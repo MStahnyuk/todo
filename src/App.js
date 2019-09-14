@@ -47,7 +47,7 @@ class App extends React.Component {
                 <footer>
                     <div className="container">
                         <p>Double-click to edit a todo</p>
-                        <p>Created by <a href="https://github.com/MStahnyuk/" target="_blank" rel="noopener noreferrer">MStahnyuk</a></p>
+                        <p>Created by <a href="https://github.com/" target="_blank" rel="noopener noreferrer">MStahnyuk</a></p>
                     </div>
                 </footer>
             </Fragment>
