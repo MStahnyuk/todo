@@ -2,9 +2,6 @@ import { CHANGE_INPUT, ADD_ITEM, CHANGE_COMPLETE, DELETE_ITEM, DELETE_COMPLETED,
 
 const ENTER_KEY = 'Enter';
 
-
-let counter = 0;
-
 let  initialState;
 
 if(localStorage.getItem("initialState")) {
@@ -25,9 +22,9 @@ if(localStorage.getItem("initialState")) {
     }
 }
 
-function addListItem(value = '', isCompleted = false, edit = false, display = true) {
+function addListItem(list, value = '', isCompleted = false, edit = false, display = true) {
     return {
-        id: counter++,
+        id: list.reduce((max, current) => Math.max(max, current)) + 1,
         value,
         isCompleted,
         edit,
@@ -117,10 +114,11 @@ export default function rootReducer(state = initialState, action) {
                     },
                     list: [
                         ...state.list,
-                        addListItem(state.input.value),
+                        addListItem(state.list, state.input.value),
                     ],
                  };
-            } 
+            }
+            return state;
         }
         
         case CHANGE_COMPLETE: {
@@ -131,7 +129,7 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 list: newList,
-            }
+            };
         }
 
         case DELETE_ITEM: {
@@ -178,7 +176,7 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 list: changeEdit(state.list, action.payload),
-            }
+            };
         }
 
         default:

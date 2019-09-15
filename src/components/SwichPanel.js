@@ -33,7 +33,6 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         deleteCompleted: () => {
-            console.log('111');
             dispatch(deleteCompleted());
         },
     }

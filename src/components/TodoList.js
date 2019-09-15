@@ -4,7 +4,6 @@ import TodoListItem from './TodoListItem';
 
 class TodoList extends React.Component {
     render() {
-        console.log('this.props.list', this.props.list);
         return (
             <ul className='todoList'>
                 {this.props.list.filter(item => item.display).map((item) => {

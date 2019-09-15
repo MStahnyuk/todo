@@ -61,7 +61,6 @@ export function edit(value) {
 }
 
 export function changeEdit(id) {
-    console.log('id', id);
     return {
         type: CHANGE_EDIT,
         payload: id,

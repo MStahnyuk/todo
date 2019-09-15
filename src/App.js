@@ -17,7 +17,6 @@ class App extends React.Component {
     handleKeyPress = (event) => {
         const value = event.target.value;
         if(event.key === 'Enter' && value !== '') {
-            console.log(value);
             let newListArray = this.state.list;
             newListArray.push(value);
             this.setState({

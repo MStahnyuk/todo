@@ -28,5 +28,5 @@ const app = (
     </Provider>
 )
 
-ReactDOM.render(app, document.getElementById('body'));
+ReactDOM.render(app, document.getElementById('root'));
 serviceWorker.unregister();
