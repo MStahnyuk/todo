@@ -18,6 +18,7 @@ function mapStateToProps(state) {
         value: state.input.value,
         active: (state.list.length) ? 'active ' : '',
         checked: (!state.list.filter(item => !item.isCompleted).length) ? 'checked ' : '',
+        state,
     }
 }
 

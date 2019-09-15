@@ -22,9 +22,16 @@ if(localStorage.getItem("initialState")) {
     }
 }
 
+function getNewId(list) {
+    if(list.length){
+        return Math.max.apply(Math, list.map(function(item) { return item.id; })) + 1;
+    }
+    return 0;
+}
+
 function addListItem(list, value = '', isCompleted = false, edit = false, display = true) {
     return {
-        id: list.reduce((max, current) => Math.max(max, current)) + 1,
+        id: getNewId(list),
         value,
         isCompleted,
         edit,
