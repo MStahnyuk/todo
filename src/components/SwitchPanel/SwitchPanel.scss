@@ -1,0 +1,72 @@
+.switchPanel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 15px;
+  color: #777;
+  background: white;
+  position: relative;
+  z-index: 1;
+
+  &.view-false {
+    display: none;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 50px;
+    overflow: hidden;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2),
+      0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
+    z-index: -1;
+  }
+
+  .buttons {
+    button {
+      margin: 3px;
+      padding: 3px 7px;
+      border-radius: 3px;
+      box-sizing: border-box;
+      border: 1px solid transparent;
+
+      &:hover {
+        border-color: rgba(175, 47, 47, 0.1);
+      }
+
+      &.active-true {
+        border-color: rgba(175, 47, 47, 0.2);
+      }
+    }
+  }
+
+  .clear {
+    &:disabled {
+      opacity: 0.3;
+      text-decoration: line-through !important;
+      &:hover {
+        // text-decoration: underline;
+      }
+    }
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .switchPanel {
+    position: relative;
+    padding-bottom: 46px;
+    padding-top: 10px;
+    .buttons {
+      position: absolute;
+      left: 50%;
+      margin-left: -94px;
+      bottom: 5px;
+    }
+  }
+}

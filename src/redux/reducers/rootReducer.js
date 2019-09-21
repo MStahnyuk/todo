@@ -1,10 +1,10 @@
 import { CHANGE_INPUT, ADD_ITEM, CHANGE_COMPLETE, DELETE_ITEM, DELETE_COMPLETED, FILTER, CHANGE_COMPLETE_ALL, EDIT, CHANGE_EDIT } from '../actions/actionTypes';
 
-const ENTER_KEY = 'Enter';
+export const ENTER_KEY = 'Enter';
 
-let  initialState;
+let initialState;
 
-if(localStorage.getItem("initialState")) {
+if (localStorage.getItem("initialState")) {
     initialState = JSON.parse(localStorage.getItem("initialState"));
 } else {
     initialState = {
@@ -14,17 +14,17 @@ if(localStorage.getItem("initialState")) {
         list: [],
         switchPanel: {
             buttonsFilter: [
-                { title: 'All', active: true, value: 'all'},
-                {title: 'Active', active: false, value: 'active'},
-                {title: 'Completed', active: false, value: 'completed'},
+                { title: 'All', active: true, value: 'all' },
+                { title: 'Active', active: false, value: 'active' },
+                { title: 'Completed', active: false, value: 'completed' },
             ],
         },
     }
 }
 
 function getNewId(list) {
-    if(list.length){
-        return Math.max.apply(Math, list.map(function(item) { return item.id; })) + 1;
+    if (list.length) {
+        return Math.max.apply(Math, list.map(function (item) { return item.id; })) + 1;
     }
     return 0;
 }
@@ -35,17 +35,17 @@ function addListItem(list, value = '', isCompleted = false, edit = false, displa
         value,
         isCompleted,
         edit,
-        display,        
+        display,
     }
 }
 
-function filter(list, field) {    
+function filter(list, field) {
     let newList = list.slice().map(item => {
         item.display = true;
         return item;
     });
 
-    if(field === 'all') return newList;
+    if (field === 'all') return newList;
 
     if (field === 'active') {
         return newList.map(item => {
@@ -64,13 +64,13 @@ function changeCompleteAll(state) {
     let newList = state.list.slice();
     let sortByField = state.switchPanel.buttonsFilter.slice().filter(field => field.active)[0].value;
     let isCompleted = false;
-    if(newList.filter(item => !item.isCompleted).length) {
+    if (newList.filter(item => !item.isCompleted).length) {
         isCompleted = true;
     }
 
     newList = newList.map(item => {
-            item.isCompleted = isCompleted;
-            return item;
+        item.isCompleted = isCompleted;
+        return item;
     });
 
     return filter(newList, sortByField);
@@ -85,11 +85,11 @@ function changeButtonActive(buttonsFilter, activeValue) {
 
 function edit(list, newValue, id) {
 
-    if(newValue === '') 
+    if (newValue === '')
         return list.slice().filter(item => item.id !== id);
 
     let newList = list.slice().map(item => {
-        if(item.id === id) item.value = newValue;
+        if (item.id === id) item.value = newValue;
         return item;
     });
 
@@ -98,24 +98,25 @@ function edit(list, newValue, id) {
 
 function changeEdit(list, id) {
     return list.slice().map(item => {
-        if(item.id === id) item.edit = !item.edit;
+        if (item.id === id) item.edit = !item.edit;
         return item;
     });
 }
 
 export default function rootReducer(state = initialState, action) {
-    switch(action.type) {
+    switch (action.type) {
         case CHANGE_INPUT:
-            return { ...state,
-                    input: {
-                        value: action.payload
-                    }
-                 };
-            
+            return {
+                ...state,
+                input: {
+                    value: action.payload
+                }
+            };
+
         case ADD_ITEM: {
-            if(action.payload === ENTER_KEY) {
-                return { 
-                    ...state, 
+            if (action.payload === ENTER_KEY) {
+                return {
+                    ...state,
                     input: {
                         value: ''
                     },
@@ -123,14 +124,14 @@ export default function rootReducer(state = initialState, action) {
                         ...state.list,
                         addListItem(state.list, state.input.value),
                     ],
-                 };
+                };
             }
             return state;
         }
-        
+
         case CHANGE_COMPLETE: {
             let newList = state.list.slice().map(item => {
-                if(item.id === action.payload) item.isCompleted = !item.isCompleted;
+                if (item.id === action.payload) item.isCompleted = !item.isCompleted;
                 return item;
             });
             return {
@@ -147,7 +148,7 @@ export default function rootReducer(state = initialState, action) {
             }
         }
 
-        case FILTER: {            
+        case FILTER: {
             return {
                 ...state,
                 list: filter(state.list, action.payload),
@@ -173,7 +174,7 @@ export default function rootReducer(state = initialState, action) {
         }
 
         case EDIT: {
-            return  {
+            return {
                 ...state,
                 list: edit(state.list, action.payload.value, action.payload.id),
             }

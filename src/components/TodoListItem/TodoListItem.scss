@@ -1,0 +1,130 @@
+.todoListItem {
+  display: flex;
+  align-items: center;
+  background: white;
+  margin-bottom: 1px;
+  position: relative;
+
+  label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 65px;
+    width: 58px;
+    position: relative;
+    cursor: pointer;
+
+    &:before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin-left: -15px;
+      margin-top: -15px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      box-sizing: border-box;
+      border: 2px solid #ededed;
+    }
+
+    i {
+      color: #5dc2af;
+      display: none;
+      font-size: 16px;
+      font-weight: 100;
+    }
+
+    &:hover {
+      &:before {
+        border-color: #bddad5;
+      }
+    }
+  }
+
+  .text,
+  .editInput {
+    padding: 15px 0px;
+    font-size: 24px;
+    color: #4d4d4d;
+    transition: color 0.4s;
+    width: calc(100% - 108px);
+    line-height: 1.2;
+    box-sizing: border-box;
+  }
+
+  .editInput {
+    position: absolute;
+    height: 100%;
+    left: 50px;
+    top: -1;
+    border: 1px solid #999;
+    box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
+    z-index: -1;
+    padding-left: 7px;
+    font-family: "Helvetica Neue", Helvetica, Arial;
+  }
+
+  &.edit-true {
+    .text {
+      display: none;
+    }
+    .editInput {
+      z-index: 1;
+    }
+  }
+
+  .delete {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -27px;
+    font-size: 20px;
+    padding: 15px;
+    display: none;
+    color: #4d4d4d;
+    &:hover {
+      color: #cc9a9a;
+    }
+  }
+
+  &:hover {
+    .delete {
+      display: block;
+    }
+  }
+
+  &.checked-true {
+    .text {
+      color: #d9d9d9;
+      text-decoration: line-through;
+    }
+
+    label {
+      &:before {
+        border-color: #bddad5;
+      }
+      i {
+        display: inline;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .todoListItem {
+    label {
+      height: 55px;
+    }
+    .text,
+    .editInput {
+      padding: 8px 0;
+      font-size: 20px;
+    }
+
+    .editInput {
+      height: 53px;
+      top: 1px;
+    }
+  }
+}

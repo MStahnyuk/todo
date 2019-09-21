@@ -1,20 +1,25 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import ButtonFilter from './ButtonFilter';
-import { deleteCompleted } from '../redux/actions/actions';
+import { connect } from 'react-redux';
+import ButtonFilter from '../ButtonFilter/ButtonFilter';
+import { deleteCompleted } from '../../redux/actions/actions';
+import './SwitchPanel.scss';
 
 class SwichPanel extends React.Component {
     render() {
-        const {itemsLeft, buttonsFilter, disabled, view} = this.props;
+        const { itemsLeft, buttonsFilter, disabled, view } = this.props;
         return (
-            <div className={"switchPanel view-" + view}>                
+            <div className={"switchPanel view-" + view}>
                 <span>{itemsLeft} items left</span>
                 <div className="buttons">
-                    {buttonsFilter.map(button => <ButtonFilter key={button.value} button={button}/>)}
+                    {buttonsFilter.map(button => <ButtonFilter key={button.value} button={button} />)}
                 </div>
 
                 <div>
-                    <button className="clear" disabled={disabled} onClick={this.props.deleteCompleted}>Clear completed</button>
+                    <button className="clear"
+                        disabled={disabled}
+                        onClick={this.props.deleteCompleted}>
+                        Clear completed
+                    </button>
                 </div>
             </div>
         )

@@ -1,13 +1,14 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import TodoListItem from './TodoListItem';
+import { connect } from 'react-redux';
+import TodoListItem from '../TodoListItem/TodoListItem';
+import './TodoList.scss';
 
 class TodoList extends React.Component {
     render() {
         return (
             <ul className='todoList'>
                 {this.props.list.filter(item => item.display).map((item) => {
-                    return <TodoListItem key={item.id} item={item}/>
+                    return <TodoListItem key={item.id} item={item} />
                 })}
             </ul>
         )

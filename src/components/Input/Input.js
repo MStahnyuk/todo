@@ -1,13 +1,20 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import { changeInput, keyPress, changeCompleteAll } from '../redux/actions/actions';
+import { connect } from 'react-redux';
+import { changeInput, keyPress, changeCompleteAll } from '../../redux/actions/actions';
+import './Input.scss';
 
 class Input extends React.Component {
     render() {
         return (
             <div className="mainInput">
-                <i className={"completeAll fa fa-chevron-down " + this.props.active + this.props.checked} onClick={this.props.changeCompleteAll}></i>
-                <input type="text" placeholder="What needs to be done?" value={this.props.value} onChange={this.props.onChange} onKeyPress={this.props.onKeyPress} />
+                <i
+                    className={"completeAll fa fa-chevron-down " + this.props.active + this.props.checked}
+                    onClick={this.props.changeCompleteAll}>
+                </i>
+                <input type="text" placeholder="What needs to be done?"
+                    value={this.props.value}
+                    onChange={this.props.onChange}
+                    onKeyPress={this.props.onKeyPress} />
             </div>
         )
     }
