@@ -47,9 +47,6 @@
     &:disabled {
       opacity: 0.3;
       text-decoration: line-through !important;
-      &:hover {
-        // text-decoration: underline;
-      }
     }
     &:hover {
       text-decoration: underline;
