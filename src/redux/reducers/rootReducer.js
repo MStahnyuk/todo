@@ -114,7 +114,7 @@ export default function rootReducer(state = initialState, action) {
             };
 
         case ADD_ITEM: {
-            if (action.payload === ENTER_KEY) {
+            if (action.payload === ENTER_KEY && state.input.value) {
                 return {
                     ...state,
                     input: {
